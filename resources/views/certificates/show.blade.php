@@ -124,6 +124,12 @@
         </div>
 
         <!-- 5. Images & Evidence Section -->
+        @php
+            $isPdf1 = $certificate->photo_1 && str_ends_with(strtolower($certificate->photo_1), '.pdf');
+            $isPdf2 = $certificate->photo_2 && str_ends_with(strtolower($certificate->photo_2), '.pdf');
+            $isPdf3 = $certificate->photo_3 && str_ends_with(strtolower($certificate->photo_3), '.pdf');
+        @endphp
+
         @if(!$certificate->photo_1 && !$certificate->photo_3)
             <div class="max-w-md mx-auto text-center">
                 <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col items-center justify-between">
@@ -131,7 +137,18 @@
                         Gasfiter Certificado Autorizado SEC<br>Domingo Isain
                     </div>
                     @if($certificate->photo_2)
-                        <img src="{{ asset('storage/' . $certificate->photo_2) }}" alt="QR SEC" class="h-40 w-auto object-contain my-1">
+                        @if($isPdf2)
+                            <div class="my-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex flex-col items-center">
+                                <i data-lucide="file-text" class="w-10 h-10 text-emerald-600 mb-2"></i>
+                                <span class="text-xs font-bold text-emerald-900 mb-2">Documento SEC (PDF)</span>
+                                <a href="{{ asset('storage/' . $certificate->photo_2) }}" target="_blank" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1.5">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    <span>Ver Credencial PDF</span>
+                                </a>
+                            </div>
+                        @else
+                            <img src="{{ asset('storage/' . $certificate->photo_2) }}" alt="QR SEC" class="h-40 w-auto object-contain my-1">
+                        @endif
                     @else
                         <img src="{{ asset('images/domingo-isain-gasfiter-sec-qr.png') }}" alt="QR SEC" class="h-40 w-auto object-contain my-1">
                     @endif
@@ -141,9 +158,20 @@
         @else
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 <!-- Photo 1 -->
-                <div class="border border-slate-200 rounded-xl p-2 bg-slate-50">
+                <div class="border border-slate-200 rounded-xl p-2 bg-slate-50 flex flex-col justify-between items-center">
                     @if($certificate->photo_1)
-                        <img src="{{ asset('storage/' . $certificate->photo_1) }}" alt="Evidencia 1" class="h-44 w-full object-cover rounded-lg">
+                        @if($isPdf1)
+                            <div class="h-44 w-full flex flex-col items-center justify-center p-3 bg-sky-50 border border-sky-200 rounded-lg">
+                                <i data-lucide="file-text" class="w-10 h-10 text-sky-600 mb-2"></i>
+                                <span class="text-xs font-bold text-sky-900 mb-2">Documento de Inspección</span>
+                                <a href="{{ asset('storage/' . $certificate->photo_1) }}" target="_blank" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1.5">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    <span>Ver Documento PDF</span>
+                                </a>
+                            </div>
+                        @else
+                            <img src="{{ asset('storage/' . $certificate->photo_1) }}" alt="Evidencia 1" class="h-44 w-full object-cover rounded-lg">
+                        @endif
                     @else
                         <img src="{{ asset('images/logotipo-holding.png') }}" alt="Evidencia 1" class="h-44 w-full object-contain p-4 rounded-lg bg-white">
                     @endif
@@ -156,7 +184,18 @@
                         Gasfiter Certificado Autorizado SEC<br>Domingo Isain
                     </div>
                     @if($certificate->photo_2)
-                        <img src="{{ asset('storage/' . $certificate->photo_2) }}" alt="QR SEC" class="h-32 w-auto object-contain my-1">
+                        @if($isPdf2)
+                            <div class="my-2 p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex flex-col items-center">
+                                <i data-lucide="file-text" class="w-8 h-8 text-emerald-600 mb-1"></i>
+                                <span class="text-xs font-bold text-emerald-900 mb-2">Credencial SEC (PDF)</span>
+                                <a href="{{ asset('storage/' . $certificate->photo_2) }}" target="_blank" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    <span>Ver PDF</span>
+                                </a>
+                            </div>
+                        @else
+                            <img src="{{ asset('storage/' . $certificate->photo_2) }}" alt="QR SEC" class="h-32 w-auto object-contain my-1">
+                        @endif
                     @else
                         <img src="{{ asset('images/domingo-isain-gasfiter-sec-qr.png') }}" alt="QR SEC" class="h-32 w-auto object-contain my-1">
                     @endif
@@ -164,9 +203,20 @@
                 </div>
 
                 <!-- Photo 3 -->
-                <div class="border border-slate-200 rounded-xl p-2 bg-slate-50">
+                <div class="border border-slate-200 rounded-xl p-2 bg-slate-50 flex flex-col justify-between items-center">
                     @if($certificate->photo_3)
-                        <img src="{{ asset('storage/' . $certificate->photo_3) }}" alt="Evidencia 3" class="h-44 w-full object-cover rounded-lg">
+                        @if($isPdf3)
+                            <div class="h-44 w-full flex flex-col items-center justify-center p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                                <i data-lucide="file-text" class="w-10 h-10 text-amber-600 mb-2"></i>
+                                <span class="text-xs font-bold text-amber-900 mb-2">Prueba / Medición</span>
+                                <a href="{{ asset('storage/' . $certificate->photo_3) }}" target="_blank" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1.5">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    <span>Ver Documento PDF</span>
+                                </a>
+                            </div>
+                        @else
+                            <img src="{{ asset('storage/' . $certificate->photo_3) }}" alt="Evidencia 3" class="h-44 w-full object-cover rounded-lg">
+                        @endif
                     @else
                         <img src="{{ asset('images/logotipo-sec.png') }}" alt="Evidencia 3" class="h-44 w-full object-contain p-4 rounded-lg bg-white">
                     @endif
@@ -180,8 +230,18 @@
                 <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Fotograf&iacute;as Adicionales de Evidencia</h4>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     @foreach($certificate->extra_photos as $idx => $exPath)
-                        <div class="border border-slate-200 rounded-lg p-1.5 bg-slate-50 text-center">
-                            <img src="{{ asset('storage/' . $exPath) }}" class="h-28 w-full object-cover rounded">
+                        @php
+                            $isExPdf = str_ends_with(strtolower($exPath), '.pdf');
+                        @endphp
+                        <div class="border border-slate-200 rounded-lg p-1.5 bg-slate-50 text-center flex flex-col justify-between items-center">
+                            @if($isExPdf)
+                                <div class="h-28 w-full flex flex-col items-center justify-center bg-purple-50 border border-purple-200 rounded p-2">
+                                    <i data-lucide="file-text" class="w-6 h-6 text-purple-600 mb-1"></i>
+                                    <a href="{{ asset('storage/' . $exPath) }}" target="_blank" class="text-[10px] font-bold text-purple-700 hover:underline">Ver PDF</a>
+                                </div>
+                            @else
+                                <img src="{{ asset('storage/' . $exPath) }}" class="h-28 w-full object-cover rounded">
+                            @endif
                             <span class="text-[10px] font-medium text-slate-500 mt-1 block">Foto Extra {{ $idx + 4 }}</span>
                         </div>
                     @endforeach

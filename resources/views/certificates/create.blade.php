@@ -190,7 +190,7 @@ if (window.Alpine) {
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-3 border-t border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-3 border-t border-slate-200">
                 <div>
                     <label for="certificate_number" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                         N&deg; Folio <span class="text-rose-500">*</span>
@@ -205,6 +205,18 @@ if (window.Alpine) {
                     </label>
                     <input type="date" id="date" name="date" value="{{ old('date', date('Y-m-d')) }}" required
                            class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 text-sm font-semibold focus:bg-white focus:border-sky-500 shadow-xs">
+                </div>
+
+                <div>
+                    <label for="status" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                        Estado Inicial <span class="text-rose-500">*</span>
+                    </label>
+                    <select id="status" name="status" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 text-sm font-bold focus:bg-white focus:border-sky-500 shadow-xs">
+                        <option value="emitido" {{ old('status', 'emitido') == 'emitido' ? 'selected' : '' }}>Emitido / Vigente</option>
+                        <option value="completado" {{ old('status') == 'completado' ? 'selected' : '' }}>Completado</option>
+                        <option value="pendiente" {{ old('status') == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="anulado" {{ old('status') == 'anulado' ? 'selected' : '' }}>Anulado</option>
+                    </select>
                 </div>
             </div>
 
@@ -508,13 +520,13 @@ if (window.Alpine) {
 
                         <!-- PDF Card Preview -->
                         <template x-if="isPdf">
-                            <div class="mt-2 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-3">
-                                <div class="p-2 bg-rose-600 text-white rounded-lg shadow-xs shrink-0">
-                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <div class="mt-2 p-3 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-3 shadow-xs">
+                                <div class="p-2 bg-emerald-600 text-white rounded-lg shadow-xs shrink-0">
+                                    <i data-lucide="file-check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-xs font-bold text-rose-900 truncate" x-text="fileName"></p>
-                                    <p class="text-[10px] text-rose-600 font-semibold">Documento PDF listo para adjuntar</p>
+                                    <p class="text-xs font-bold text-emerald-950 truncate" x-text="fileName"></p>
+                                    <p class="text-[10px] text-emerald-700 font-bold">&#10003; Documento PDF listo para adjuntar</p>
                                 </div>
                             </div>
                         </template>
@@ -576,13 +588,13 @@ if (window.Alpine) {
 
                         <!-- PDF Card Preview -->
                         <template x-if="isPdf">
-                            <div class="mt-2 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-3">
-                                <div class="p-2 bg-rose-600 text-white rounded-lg shadow-xs shrink-0">
-                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <div class="mt-2 p-3 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-3 shadow-xs">
+                                <div class="p-2 bg-emerald-600 text-white rounded-lg shadow-xs shrink-0">
+                                    <i data-lucide="file-check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-xs font-bold text-rose-900 truncate" x-text="fileName"></p>
-                                    <p class="text-[10px] text-rose-600 font-semibold">Documento PDF listo para adjuntar</p>
+                                    <p class="text-xs font-bold text-emerald-950 truncate" x-text="fileName"></p>
+                                    <p class="text-[10px] text-emerald-700 font-bold">&#10003; Documento PDF listo para adjuntar</p>
                                 </div>
                             </div>
                         </template>
@@ -644,13 +656,13 @@ if (window.Alpine) {
 
                         <!-- PDF Card Preview -->
                         <template x-if="isPdf">
-                            <div class="mt-2 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-3">
-                                <div class="p-2 bg-rose-600 text-white rounded-lg shadow-xs shrink-0">
-                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <div class="mt-2 p-3 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-3 shadow-xs">
+                                <div class="p-2 bg-emerald-600 text-white rounded-lg shadow-xs shrink-0">
+                                    <i data-lucide="file-check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-xs font-bold text-rose-900 truncate" x-text="fileName"></p>
-                                    <p class="text-[10px] text-rose-600 font-semibold">Documento PDF listo para adjuntar</p>
+                                    <p class="text-xs font-bold text-emerald-950 truncate" x-text="fileName"></p>
+                                    <p class="text-[10px] text-emerald-700 font-bold">&#10003; Documento PDF listo para adjuntar</p>
                                 </div>
                             </div>
                         </template>
@@ -715,9 +727,9 @@ if (window.Alpine) {
 
                                     <!-- PDF Card Preview -->
                                     <template x-if="ex.isPdf">
-                                        <div class="mt-2 p-2 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2">
-                                            <i data-lucide="file-text" class="w-4 h-4 text-rose-600 shrink-0"></i>
-                                            <span class="text-[10px] font-bold text-rose-900 truncate">Documento PDF</span>
+                                        <div class="mt-2 p-2 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-2 shadow-xs">
+                                            <i data-lucide="file-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                            <span class="text-[10px] font-bold text-emerald-950 truncate">&#10003; Documento PDF</span>
                                         </div>
                                     </template>
 

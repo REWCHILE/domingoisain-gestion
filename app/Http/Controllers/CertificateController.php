@@ -116,12 +116,15 @@ class CertificateController extends Controller
             'gasfiter_name' => 'required|string',
             'gasfiter_rut' => 'required|string',
             'gasfiter_sec_class' => 'required|string',
-            'status' => 'required|in:emitido,pendiente,completado,anulado',
-            'photo_1' => 'nullable|image|max:10240',
-            'photo_2' => 'nullable|image|max:10240',
-            'photo_3' => 'nullable|image|max:10240',
+            'status' => 'nullable|in:emitido,pendiente,completado,anulado',
+            'photo_1' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
+            'photo_2' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
+            'photo_3' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
+            'extra_photos' => 'nullable|array',
+            'extra_photos.*' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
         ]);
 
+        $validated['status'] = !empty($validated['status']) ? $validated['status'] : $request->input('status', 'emitido');
         $validated['tax_type'] = 'neto';
 
         // Process items list
@@ -287,9 +290,11 @@ class CertificateController extends Controller
             'gasfiter_rut' => 'required|string',
             'gasfiter_sec_class' => 'required|string',
             'status' => 'required|in:emitido,pendiente,completado,anulado',
-            'photo_1' => 'nullable|image|max:10240',
-            'photo_2' => 'nullable|image|max:10240',
-            'photo_3' => 'nullable|image|max:10240',
+            'photo_1' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
+            'photo_2' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
+            'photo_3' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
+            'extra_photos' => 'nullable|array',
+            'extra_photos.*' => 'nullable|file|mimes:jpeg,png,jpg,webp,pdf|max:15360',
         ]);
 
         $validated['tax_type'] = 'neto';
@@ -471,7 +476,10 @@ class CertificateController extends Controller
     private function getImageBase64($path)
     {
         if (file_exists($path)) {
-            $type = pathinfo($path, PATHINFO_EXTENSION);
+            $type = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+            if ($type === 'pdf') {
+                return '';
+            }
             $data = file_get_contents($path);
             return 'data:image/' . $type . ';base64,' . base64_encode($data);
         }
@@ -485,6 +493,12 @@ class CertificateController extends Controller
     private function uploadAndOptimizeImage($file, $path = 'certificates')
     {
         if (!$file || !$file->isValid()) return null;
+
+        // If the uploaded file is a PDF, store it directly without image processing
+        $ext = strtolower($file->getClientOriginalExtension());
+        if ($ext === 'pdf' || $file->getMimeType() === 'application/pdf') {
+            return $file->store($path, 'public');
+        }
 
         $filename = \Illuminate\Support\Str::random(40) . '.jpg';
         $storageDirectory = storage_path('app/public/' . $path);

@@ -520,13 +520,13 @@ if (window.Alpine) {
 
                         <!-- PDF Card Preview -->
                         <template x-if="isPdf">
-                            <div class="mt-2 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-3">
-                                <div class="p-2 bg-rose-600 text-white rounded-lg shadow-xs shrink-0">
-                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <div class="mt-2 p-3 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-3 shadow-xs">
+                                <div class="p-2 bg-emerald-600 text-white rounded-lg shadow-xs shrink-0">
+                                    <i data-lucide="file-check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-xs font-bold text-rose-900 truncate" x-text="fileName"></p>
-                                    <p class="text-[10px] text-rose-600 font-semibold">Documento PDF listo para adjuntar</p>
+                                    <p class="text-xs font-bold text-emerald-950 truncate" x-text="fileName"></p>
+                                    <p class="text-[10px] text-emerald-700 font-bold">&#10003; Documento PDF listo para adjuntar</p>
                                 </div>
                             </div>
                         </template>
@@ -540,8 +540,15 @@ if (window.Alpine) {
                         
                         @if($certificate->photo_1)
                         <div class="mt-2 text-center" x-show="!previewUrl && !isPdf">
-                            <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Imagen actual:</span>
-                            <img src="{{ asset('storage/' . $certificate->photo_1) }}" class="h-28 w-full object-cover rounded-xl border border-slate-200 shadow-xs">
+                            <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Archivo actual:</span>
+                            @if(str_ends_with(strtolower($certificate->photo_1), '.pdf'))
+                                <a href="{{ asset('storage/' . $certificate->photo_1) }}" target="_blank" class="p-3 bg-sky-50 border border-sky-200 rounded-xl flex items-center justify-center gap-2 text-xs font-bold text-sky-700 hover:bg-sky-100 transition-colors">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                    <span>Ver PDF Adjunto</span>
+                                </a>
+                            @else
+                                <img src="{{ asset('storage/' . $certificate->photo_1) }}" class="h-28 w-full object-cover rounded-xl border border-slate-200 shadow-xs">
+                            @endif
                         </div>
                         @endif
 
@@ -593,13 +600,13 @@ if (window.Alpine) {
 
                         <!-- PDF Card Preview -->
                         <template x-if="isPdf">
-                            <div class="mt-2 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-3">
-                                <div class="p-2 bg-rose-600 text-white rounded-lg shadow-xs shrink-0">
-                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <div class="mt-2 p-3 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-3 shadow-xs">
+                                <div class="p-2 bg-emerald-600 text-white rounded-lg shadow-xs shrink-0">
+                                    <i data-lucide="file-check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-xs font-bold text-rose-900 truncate" x-text="fileName"></p>
-                                    <p class="text-[10px] text-rose-600 font-semibold">Documento PDF listo para adjuntar</p>
+                                    <p class="text-xs font-bold text-emerald-950 truncate" x-text="fileName"></p>
+                                    <p class="text-[10px] text-emerald-700 font-bold">&#10003; Documento PDF listo para adjuntar</p>
                                 </div>
                             </div>
                         </template>
@@ -613,8 +620,15 @@ if (window.Alpine) {
                         
                         @if($certificate->photo_2)
                         <div class="mt-2 text-center" x-show="!previewUrl && !isPdf">
-                            <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Imagen actual:</span>
-                            <img src="{{ asset('storage/' . $certificate->photo_2) }}" class="h-28 w-full object-cover rounded-xl border border-slate-200 shadow-xs">
+                            <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Archivo actual:</span>
+                            @if(str_ends_with(strtolower($certificate->photo_2), '.pdf'))
+                                <a href="{{ asset('storage/' . $certificate->photo_2) }}" target="_blank" class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-center gap-2 text-xs font-bold text-emerald-700 hover:bg-emerald-100 transition-colors">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                    <span>Ver PDF Adjunto</span>
+                                </a>
+                            @else
+                                <img src="{{ asset('storage/' . $certificate->photo_2) }}" class="h-28 w-full object-cover rounded-xl border border-slate-200 shadow-xs">
+                            @endif
                         </div>
                         @endif
 
@@ -666,13 +680,13 @@ if (window.Alpine) {
 
                         <!-- PDF Card Preview -->
                         <template x-if="isPdf">
-                            <div class="mt-2 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-3">
-                                <div class="p-2 bg-rose-600 text-white rounded-lg shadow-xs shrink-0">
-                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <div class="mt-2 p-3 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-3 shadow-xs">
+                                <div class="p-2 bg-emerald-600 text-white rounded-lg shadow-xs shrink-0">
+                                    <i data-lucide="file-check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-xs font-bold text-rose-900 truncate" x-text="fileName"></p>
-                                    <p class="text-[10px] text-rose-600 font-semibold">Documento PDF listo para adjuntar</p>
+                                    <p class="text-xs font-bold text-emerald-950 truncate" x-text="fileName"></p>
+                                    <p class="text-[10px] text-emerald-700 font-bold">&#10003; Documento PDF listo para adjuntar</p>
                                 </div>
                             </div>
                         </template>
@@ -686,8 +700,15 @@ if (window.Alpine) {
                         
                         @if($certificate->photo_3)
                         <div class="mt-2 text-center" x-show="!previewUrl && !isPdf">
-                            <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Imagen actual:</span>
-                            <img src="{{ asset('storage/' . $certificate->photo_3) }}" class="h-28 w-full object-cover rounded-xl border border-slate-200 shadow-xs">
+                            <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Archivo actual:</span>
+                            @if(str_ends_with(strtolower($certificate->photo_3), '.pdf'))
+                                <a href="{{ asset('storage/' . $certificate->photo_3) }}" target="_blank" class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center gap-2 text-xs font-bold text-amber-700 hover:bg-amber-100 transition-colors">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                    <span>Ver PDF Adjunto</span>
+                                </a>
+                            @else
+                                <img src="{{ asset('storage/' . $certificate->photo_3) }}" class="h-28 w-full object-cover rounded-xl border border-slate-200 shadow-xs">
+                            @endif
                         </div>
                         @endif
 
@@ -742,9 +763,9 @@ if (window.Alpine) {
 
                                     <!-- PDF Card Preview -->
                                     <template x-if="ex.isPdf">
-                                        <div class="mt-2 p-2 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2">
-                                            <i data-lucide="file-text" class="w-4 h-4 text-rose-600 shrink-0"></i>
-                                            <span class="text-[10px] font-bold text-rose-900 truncate">Documento PDF</span>
+                                        <div class="mt-2 p-2 bg-emerald-50/90 border-2 border-emerald-300 rounded-xl flex items-center gap-2 shadow-xs">
+                                            <i data-lucide="file-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                            <span class="text-[10px] font-bold text-emerald-950 truncate">&#10003; Documento PDF</span>
                                         </div>
                                     </template>
 
