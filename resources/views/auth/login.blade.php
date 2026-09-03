@@ -93,7 +93,7 @@
 
     </style>
 </head>
-<body class="h-full font-sans antialiased bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+<body class="min-h-screen font-sans antialiased bg-slate-950 flex flex-col justify-center items-center py-10 px-4 relative overflow-y-auto">
 
     <!-- Background Ambient Glow -->
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -102,15 +102,15 @@
     <div class="w-full max-w-md relative z-10">
         
         <!-- Header Brand -->
-        <div class="text-center mb-8">
-            <div class="inline-flex flex-col items-center justify-center mb-4">
-                <div class="w-20 h-20 rounded-2xl bg-slate-900/90 border border-sky-500/30 shadow-2xl flex items-center justify-center p-2 mb-3 diamond-gem-container">
-                    <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-16 h-16 object-contain animate-diamond-crystal">
+        <div class="text-center mb-6 pt-2">
+            <div class="inline-flex flex-col items-center justify-center mb-2">
+                <div class="w-16 h-16 rounded-2xl bg-slate-900/90 border border-sky-500/40 shadow-xl flex items-center justify-center p-2 mb-2 diamond-gem-container">
+                    <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-12 h-12 object-contain animate-diamond-crystal">
                 </div>
             </div>
-            <h1 class="text-2xl font-bold text-white tracking-tight">Domingo Isa&iacute;n Plaza Caama&ntilde;o</h1>
-            <p class="text-xs text-sky-400 font-medium mt-1 uppercase tracking-wider">Ingenier&iacute;a Civil y Servicios de la Construcci&oacute;n</p>
-            <p class="text-[11px] text-slate-400">Gasfiter Certificado Autorizado SEC</p>
+            <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">Domingo Isa&iacute;n Plaza Caama&ntilde;o</h1>
+            <p class="text-xs text-sky-400 font-bold mt-1 uppercase tracking-wider">Ingenier&iacute;a Civil y Servicios de la Construcci&oacute;n</p>
+            <p class="text-[11px] text-slate-400 font-medium">Gasfiter Certificado Autorizado SEC</p>
         </div>
 
         <!-- Login Card -->

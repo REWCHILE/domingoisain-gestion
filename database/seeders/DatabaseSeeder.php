@@ -12,9 +12,22 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Create Admin (Domingo Isain - Owner)
-        $admin = User::firstOrCreate(
+        // 1. Create Admin (domi@instalgaschile.cl and contacto@domingoisain.cl)
+        $admin = User::updateOrCreate(
             ['email' => 'domi@instalgaschile.cl'],
+            [
+                'name' => 'Domingo Isain Plaza Caamaño',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+                'phone' => '949877316',
+                'rut' => '12.738.961-6',
+                'sec_code' => 'Clase 3 - Gasfiter Certificado Autorizado SEC',
+                'is_active' => true,
+            ]
+        );
+
+        $admin2 = User::updateOrCreate(
+            ['email' => 'contacto@domingoisain.cl'],
             [
                 'name' => 'Domingo Isain Plaza Caamaño',
                 'password' => Hash::make('admin123'),
