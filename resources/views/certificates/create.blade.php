@@ -18,20 +18,20 @@
 
 <!-- Form Global Alpine Component Script Loaded FIRST -->
 <script>
-window.certificateData = function() {
+function certificateData() {
     const chileRegions = {"Región Metropolitana": ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor", "Colina", "Lampa", "Til Til"], "Región de Valparaíso": ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "Limache", "Olmué", "Quillota", "La Calera", "Hijuelas", "La Cruz", "Nogales", "San Antonio", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo", "San Felipe", "Los Andes", "Casablanca", "Llaillay", "Panquehue", "Putaendo", "Santa María", "Calle Larga", "Rinconada", "San Esteban", "Cabildo", "La Ligua", "Papudo", "Petorca", "Zapallar", "Algarrobo", "Isla de Pascua", "Juan Fernández"], "Región de O'Higgins": ["Rancagua", "Machalí", "Graneros", "Mostazal", "Codegua", "Doñihue", "Coltauco", "Coinco", "Peumo", "Pichidegua", "Las Cabras", "San Vicente", "Rengo", "Malloa", "Quinta de Tilcoco", "San Fernando", "Chimbarongo", "Placilla", "Nancagua", "Chépica", "Santa Cruz", "Lolol", "Pumanque", "Palmilla", "Peralillo", "Pichilemu", "Navidad", "Litueche", "La Estrella", "Marchigüe", "Paredones"], "Región del Maule": ["Talca", "San Clemente", "Pelarco", "Pencahue", "Maule", "San Rafael", "Curepto", "Constitución", "Empedrado", "Curicó", "Teno", "Romeral", "Molina", "Sagrada Familia", "Hualañé", "Licantén", "Vichuquén", "Rauco", "Linares", "Yerbas Buenas", "Colbún", "Longaví", "Parral", "Retiro", "Villa Alegre", "San Javier", "Cauquenes", "Pelluhue", "Chanco"], "Región del Biobío": ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Hualpén", "Los Ángeles", "Antuco", "Cabrero", "Laja", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Alto Biobío", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Álamos", "Tirúa"], "Región de La Araucanía": ["Temuco", "Padre Las Casas", "Carahue", "Cholchol", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Angol", "Collipulli", "Curacautín", "Ercilla", "Lonquimay", "Los Sauces", "Lumaco", "Purén", "Renaico", "Traiguén", "Victoria"], "Región de Coquimbo": ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"], "Región de Antofagasta": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"], "Región de Los Lagos": ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao", "Osorno", "Puerto Octay", "Purranque", "Puyehue", "Río Negro", "San Juan de la Costa", "San Pablo", "Chaitén", "Futaleufú", "Hualaihué", "Palena"], "Región de Los Ríos": ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión", "Futrono", "Lago Ranco", "Río Bueno"], "Región de Tarapacá": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"], "Región de Arica y Parinacota": ["Arica", "Camarones", "Putre", "General Lagos"], "Región de Atacama": ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"], "Región de Ñuble": ["Chillán", "Chillán Viejo", "Quirihue", "Cobquecura", "Ninhue", "Treguaco", "San Carlos", "Coihueco", "San Nicolás", "San Fabián", "Pinto", "Bulnes", "San Ignacio", "El Carmen", "Yungay", "Pemuco", "Quillón", "Ránquil", "Portezuelo", "Coelemu"], "Región de Aysén": ["Coyhaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel", "Chile Chico", "Río Ibáñez"], "Región de Magallanes": ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine"]};
 
     return {
-        documentType: {{ json_encode($initialDocType) }},
+        documentType: {!! json_encode($initialDocType) !!},
         regions: chileRegions,
-        selectedRegion: {{ json_encode($initialRegion) }},
-        selectedComuna: {{ json_encode($initialComuna) }},
-        items: {{ json_encode($initialItems) }},
+        selectedRegion: {!! json_encode($initialRegion) !!},
+        selectedComuna: {!! json_encode($initialComuna) !!},
+        items: {!! json_encode($initialItems) !!},
         taxType: 'neto',
         activeTemplate: null,
         metrosLineales: 30,
         presionMmca: 368,
-        workDetails: {{ json_encode($initialWorkDetails) }},
+        workDetails: {!! json_encode($initialWorkDetails) !!},
 
         get availableComunas() {
             return this.regions[this.selectedRegion] || [];
@@ -98,10 +98,18 @@ window.certificateData = function() {
             this.$nextTick(() => { if (window.lucide) lucide.createIcons(); });
         }
     };
-};
+}
+window.certificateData = certificateData;
+
+document.addEventListener('alpine:init', () => {
+    Alpine.data('certificateData', certificateData);
+});
+if (window.Alpine) {
+    Alpine.data('certificateData', certificateData);
+}
 </script>
 
-<div class="max-w-5xl mx-auto space-y-6" x-data="certificateData()">
+<div class="max-w-5xl mx-auto space-y-6" x-data="certificateData">
 
     <!-- Page Title Header -->
     <div class="flex items-center justify-between border-b border-slate-200 pb-4">
