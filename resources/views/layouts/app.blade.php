@@ -157,6 +157,75 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+    
+        /* Constant 3D Diamond / Crystal Isotype Animation */
+        @keyframes diamondFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                filter: drop-shadow(0 3px 5px rgba(2, 132, 199, 0.28)) drop-shadow(0 0 6px rgba(56, 189, 248, 0.25));
+            }
+            50% {
+                transform: translateY(-4px) scale(1.04);
+                filter: drop-shadow(0 8px 14px rgba(2, 132, 199, 0.45)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.55));
+            }
+        }
+
+        @keyframes diamondShineSweep {
+            0% {
+                transform: translateX(-150%) rotate(25deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.75;
+            }
+            45% {
+                transform: translateX(170%) rotate(25deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(170%) rotate(25deg);
+                opacity: 0;
+            }
+        }
+
+        .diamond-gem-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diamond-gem-container::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: linear-gradient(
+                90deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.85) 50%,
+                transparent 70%
+            );
+            transform: translateX(-150%) rotate(25deg);
+            animation: diamondShineSweep 4.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            border-radius: inherit;
+        }
+
+        .animate-diamond-crystal {
+            animation: diamondFloat 3.4s ease-in-out infinite;
+            will-change: transform, filter;
+            transition: all 0.3s ease;
+        }
+
+        .animate-diamond-crystal:hover {
+            filter: drop-shadow(0 10px 20px rgba(2, 132, 199, 0.6)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.75)) !important;
+        }
+
     </style>
     @stack('styles')
 </head>
@@ -190,8 +259,8 @@
             <div class="h-20 flex items-center px-4 border-b border-slate-100 bg-gradient-to-r from-slate-50/50 to-white overflow-hidden relative">
                 <a href="{{ route('certificates.index') }}" class="flex items-center gap-3 w-full group">
                     <!-- Isotype Logo Icon (Always Visible) -->
-                    <div class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-center p-1.5 shrink-0 group-hover:scale-105 group-hover:border-sky-300 transition-all">
-                        <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-9 h-9 object-contain">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center p-1.5 shrink-0 group-hover:border-sky-300 transition-all diamond-gem-container">
+                        <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-9 h-9 object-contain animate-diamond-crystal">
                     </div>
                     
                     <!-- Text Brand (Reveals on Hover Expand) -->
@@ -216,8 +285,8 @@
                 <a href="{{ route('profile.edit') }}" title="Editar mi perfil" 
                    class="p-2.5 rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-sky-400 hover:bg-sky-50/40 transition-all flex items-center gap-3 group cursor-pointer shadow-sm overflow-hidden">
                     <!-- User Avatar using the Isologotype -->
-                    <div class="w-10 h-10 rounded-xl bg-white border border-sky-200/80 flex items-center justify-center shadow-xs shrink-0 group-hover:scale-105 transition-transform p-1">
-                        <img src="{{ asset('images/branding/isologotipo.png') }}" alt="User" class="w-8 h-8 object-contain">
+                    <div class="w-10 h-10 rounded-xl bg-white border border-sky-200/80 flex items-center justify-center shadow-xs shrink-0 p-1 diamond-gem-container">
+                        <img src="{{ asset('images/branding/isologotipo.png') }}" alt="User" class="w-8 h-8 object-contain animate-diamond-crystal">
                     </div>
                     
                     <!-- Details (Visible on Hover) -->
@@ -338,7 +407,9 @@
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
                 <div class="flex items-center gap-2">
-                    <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="h-8 w-8 object-contain">
+                    <div class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center p-1 diamond-gem-container shrink-0">
+                        <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="h-6 w-6 object-contain animate-diamond-crystal">
+                    </div>
                     <span class="font-bold text-slate-900 text-sm">Domingo Isa&iacute;n</span>
                     <span class="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full font-bold">SEC</span>
                 </div>

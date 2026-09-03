@@ -22,6 +22,75 @@
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+    
+        /* Constant 3D Diamond / Crystal Isotype Animation */
+        @keyframes diamondFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                filter: drop-shadow(0 3px 5px rgba(2, 132, 199, 0.28)) drop-shadow(0 0 6px rgba(56, 189, 248, 0.25));
+            }
+            50% {
+                transform: translateY(-4px) scale(1.04);
+                filter: drop-shadow(0 8px 14px rgba(2, 132, 199, 0.45)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.55));
+            }
+        }
+
+        @keyframes diamondShineSweep {
+            0% {
+                transform: translateX(-150%) rotate(25deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.75;
+            }
+            45% {
+                transform: translateX(170%) rotate(25deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(170%) rotate(25deg);
+                opacity: 0;
+            }
+        }
+
+        .diamond-gem-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diamond-gem-container::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: linear-gradient(
+                90deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.85) 50%,
+                transparent 70%
+            );
+            transform: translateX(-150%) rotate(25deg);
+            animation: diamondShineSweep 4.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            border-radius: inherit;
+        }
+
+        .animate-diamond-crystal {
+            animation: diamondFloat 3.4s ease-in-out infinite;
+            will-change: transform, filter;
+            transition: all 0.3s ease;
+        }
+
+        .animate-diamond-crystal:hover {
+            filter: drop-shadow(0 10px 20px rgba(2, 132, 199, 0.6)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.75)) !important;
+        }
+
     </style>
 </head>
 <body class="h-full font-sans antialiased bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
@@ -34,8 +103,10 @@
         
         <!-- Header Brand -->
         <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center p-3 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl mb-4">
-                <img src="{{ asset('images/branding/logo-domingoisain.png') }}" alt="Domingo Isa&iacute;n" class="h-14 w-auto object-contain">
+            <div class="inline-flex flex-col items-center justify-center mb-4">
+                <div class="w-20 h-20 rounded-2xl bg-slate-900/90 border border-sky-500/30 shadow-2xl flex items-center justify-center p-2 mb-3 diamond-gem-container">
+                    <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-16 h-16 object-contain animate-diamond-crystal">
+                </div>
             </div>
             <h1 class="text-2xl font-bold text-white tracking-tight">Domingo Isa&iacute;n Plaza Caama&ntilde;o</h1>
             <p class="text-xs text-sky-400 font-medium mt-1 uppercase tracking-wider">Ingenier&iacute;a Civil y Servicios de la Construcci&oacute;n</p>
