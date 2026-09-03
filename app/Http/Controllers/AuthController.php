@@ -33,7 +33,7 @@ class AuthController extends Controller
             }
 
             $request->session()->regenerate();
-            return redirect()->intended(route('certificates.index'));
+            return redirect()->route('certificates.index');
         }
 
         return back()->withErrors([
