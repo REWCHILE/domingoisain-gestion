@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<html lang="es" class="h-full bg-slate-950 text-slate-100 overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,24 +93,26 @@
 
     </style>
 </head>
-<body class="min-h-screen font-sans antialiased bg-slate-950 flex flex-col justify-center items-center py-10 px-4 relative overflow-y-auto">
+<body class="min-h-screen font-sans antialiased bg-slate-950 flex flex-col justify-center items-center py-6 px-4 relative overflow-x-hidden">
 
-    <!-- Background Ambient Glow -->
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- Background Ambient Glow (Contained) -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+    </div>
 
     <div class="w-full max-w-md relative z-10">
         
         <!-- Header Brand -->
-        <div class="text-center mb-6 pt-2">
-            <div class="inline-flex flex-col items-center justify-center mb-2">
-                <div class="w-16 h-16 rounded-2xl bg-slate-900/90 border border-sky-500/40 shadow-xl flex items-center justify-center p-2 mb-2 diamond-gem-container">
-                    <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-12 h-12 object-contain animate-diamond-crystal">
+        <div class="text-center mb-5">
+            <div class="inline-flex flex-col items-center justify-center mb-2.5">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900/90 border border-sky-500/40 shadow-xl flex items-center justify-center p-2 diamond-gem-container">
+                    <img src="{{ asset('images/branding/isologotipo.png') }}" alt="Domingo Isa&iacute;n" class="w-10 h-10 object-contain animate-diamond-crystal">
                 </div>
             </div>
-            <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">Domingo Isa&iacute;n Plaza Caama&ntilde;o</h1>
-            <p class="text-xs text-sky-400 font-bold mt-1 uppercase tracking-wider">Ingenier&iacute;a Civil y Servicios de la Construcci&oacute;n</p>
-            <p class="text-[11px] text-slate-400 font-medium">Gasfiter Certificado Autorizado SEC</p>
+            <h1 class="text-xl font-black text-white tracking-tight">Domingo Isa&iacute;n Plaza Caama&ntilde;o</h1>
+            <p class="text-[11px] text-sky-400 font-bold uppercase tracking-wider mt-0.5">Ingenier&iacute;a Civil y Servicios de la Construcci&oacute;n</p>
+            <p class="text-[10px] text-slate-400 font-medium">Gasfiter Certificado Autorizado SEC</p>
         </div>
 
         <!-- Login Card -->
