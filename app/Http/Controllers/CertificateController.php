@@ -7,6 +7,8 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class CertificateController extends Controller
@@ -210,7 +212,7 @@ class CertificateController extends Controller
             }
         }
 
-        $certificate = Certificate::create([
+        $certData = [
             'certificate_number' => $validated['certificate_number'],
             'document_type' => $validated['document_type'] ?? 'certificado',
             'date' => $validated['date'],
@@ -219,7 +221,6 @@ class CertificateController extends Controller
             'client_name' => $validated['client_name'],
             'client_phone' => $validated['client_phone'] ?? null,
             'client_address' => $validated['client_address'] ?? null,
-            'client_region' => $validated['client_region'] ?? 'Región Metropolitana',
             'client_comuna' => $validated['client_comuna'] ?? null,
             'client_provincia' => $validated['client_provincia'] ?? ($validated['client_comuna'] ?? 'Santiago'),
             'description' => $mainDescription,
@@ -239,7 +240,19 @@ class CertificateController extends Controller
             'photo_2' => $photoPaths['photo_2'],
             'photo_3' => $photoPaths['photo_3'],
             'extra_photos' => $extraPaths,
-        ]);
+        ];
+
+        if (!Schema::hasColumn('certificates', 'client_region')) {
+            try {
+                Artisan::call('migrate', ['--force' => true]);
+            } catch (\Throwable $e) {}
+        }
+
+        if (Schema::hasColumn('certificates', 'client_region')) {
+            $certData['client_region'] = $validated['client_region'] ?? 'Región Metropolitana';
+        }
+
+        $certificate = Certificate::create($certData);
 
         return redirect()->route('certificates.show', $certificate->id)
             ->with('success', 'Certificado N° ' . $certificate->certificate_number . ' emitido exitosamente.');
@@ -361,7 +374,6 @@ class CertificateController extends Controller
             'client_name' => $validated['client_name'],
             'client_phone' => $validated['client_phone'] ?? null,
             'client_address' => $validated['client_address'] ?? null,
-            'client_region' => $validated['client_region'] ?? 'Región Metropolitana',
             'client_comuna' => $validated['client_comuna'] ?? null,
             'client_provincia' => $validated['client_provincia'] ?? ($validated['client_comuna'] ?? 'Santiago'),
             'description' => $mainDescription,
@@ -378,6 +390,10 @@ class CertificateController extends Controller
             'gasfiter_sec_class' => $validated['gasfiter_sec_class'],
             'status' => $validated['status'],
         ];
+
+        if (Schema::hasColumn('certificates', 'client_region')) {
+            $updateData['client_region'] = $validated['client_region'] ?? 'Región Metropolitana';
+        }
 
         foreach (['photo_1', 'photo_2', 'photo_3'] as $photoKey) {
             if ($request->hasFile($photoKey)) {

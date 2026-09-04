@@ -58,6 +58,10 @@ Route::middleware('auth')->group(function () {
 
     // Admin only routes
     Route::middleware(['App\Http\Middleware\RoleMiddleware:admin'])->group(function () {
+        Route::get('/admin/run-migrations', function () {
+            \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+            return redirect()->route('certificates.index')->with('success', 'Migraciones ejecutadas exitosamente.');
+        })->name('admin.migrate');
         Route::delete('/certificates/{certificate}', [CertificateController::class, 'destroy'])->name('certificates.destroy');
         Route::post('/users/{user}/welcome-email', [UserController::class, 'sendWelcomeMail'])->name('users.welcome-email');
         Route::resource('users', UserController::class);
