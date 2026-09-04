@@ -374,18 +374,10 @@
                 Tel: +56 9 4987 7316 / 949 877 316
             </td>
 
-            <!-- Sub Brand Badges Center-Left -->
-            <td style="width: 35%; text-align: center;">
-                @if($holdingLogoBase64)
-                    <img src="{{ $holdingLogoBase64 }}" style="height: 110px; width: auto;" alt="Logos Holding">
-                @endif
-            </td>
-
-            <!-- Registro SEC QR Code Center-Right -->
-            <td style="width: 16%; text-align: center;">
-                @if($registroQrBase64)
-                    <img src="{{ $registroQrBase64 }}" style="height: 75px; width: auto;" alt="QR Registro">
-                    <div style="font-size: 8px; font-weight: bold; color: #334155; margin-top: 2px;">Registro SEC</div>
+            <!-- Logo Domingo Isaín Center -->
+            <td style="width: 51%; text-align: center; vertical-align: middle;">
+                @if($logoBase64)
+                    <img src="{{ $logoBase64 }}" style="height: 60px; max-width: 90%; width: auto;" alt="Domingo Isaín">
                 @endif
             </td>
 

@@ -268,9 +268,9 @@
                 <p>+56 9 4987 7316 / 949 877 316</p>
             </div>
 
-            <!-- Sub-brand Logos Center -->
-            <div class="col-span-4 flex items-center justify-center gap-2">
-                <img src="{{ asset('images/logotipo-holding.png') }}" alt="Holding" class="h-28 w-auto">
+            <!-- Logo Domingo Isaín Center -->
+            <div class="col-span-4 flex items-center justify-center">
+                <img src="{{ asset('images/branding/logo-domingoisain.png') }}" alt="Domingo Isa&iacute;n" class="h-16 w-auto">
             </div>
 
             <!-- Digital Signature Right -->
