@@ -126,6 +126,12 @@ class CertificateController extends Controller
 
         $validated['status'] = !empty($validated['status']) ? $validated['status'] : $request->input('status', 'emitido');
         $validated['tax_type'] = 'neto';
+        $validated['client_phone'] = $validated['client_phone'] ?? $request->input('client_phone');
+        $validated['client_address'] = $validated['client_address'] ?? $request->input('client_address');
+        $validated['client_region'] = $validated['client_region'] ?? $request->input('client_region', 'Región Metropolitana');
+        $validated['client_comuna'] = $validated['client_comuna'] ?? $request->input('client_comuna');
+        $validated['client_provincia'] = $validated['client_provincia'] ?? $request->input('client_provincia', $validated['client_comuna'] ?? 'Santiago');
+        $validated['work_details'] = $validated['work_details'] ?? $request->input('work_details');
 
         // Process items list
         $rawItems = $request->input('items', []);
@@ -174,10 +180,10 @@ class CertificateController extends Controller
         $client = Client::firstOrCreate(
             ['name' => $validated['client_name']],
             [
-                'phone' => $validated['client_phone'],
-                'address' => $validated['client_address'],
-                'comuna' => $validated['client_comuna'],
-                'provincia' => $validated['client_provincia'],
+                'phone' => $validated['client_phone'] ?? null,
+                'address' => $validated['client_address'] ?? null,
+                'comuna' => $validated['client_comuna'] ?? null,
+                'provincia' => $validated['client_provincia'] ?? ($validated['client_comuna'] ?? 'Santiago'),
             ]
         );
 
@@ -211,11 +217,11 @@ class CertificateController extends Controller
             'user_id' => Auth::id(),
             'client_id' => $client->id,
             'client_name' => $validated['client_name'],
-            'client_phone' => $validated['client_phone'],
-            'client_address' => $validated['client_address'],
+            'client_phone' => $validated['client_phone'] ?? null,
+            'client_address' => $validated['client_address'] ?? null,
             'client_region' => $validated['client_region'] ?? 'Región Metropolitana',
-            'client_comuna' => $validated['client_comuna'],
-            'client_provincia' => $validated['client_provincia'],
+            'client_comuna' => $validated['client_comuna'] ?? null,
+            'client_provincia' => $validated['client_provincia'] ?? ($validated['client_comuna'] ?? 'Santiago'),
             'description' => $mainDescription,
             'items' => $processedItems,
             'quantity' => $mainQuantity,
@@ -298,6 +304,12 @@ class CertificateController extends Controller
         ]);
 
         $validated['tax_type'] = 'neto';
+        $validated['client_phone'] = $validated['client_phone'] ?? $request->input('client_phone');
+        $validated['client_address'] = $validated['client_address'] ?? $request->input('client_address');
+        $validated['client_region'] = $validated['client_region'] ?? $request->input('client_region', 'Región Metropolitana');
+        $validated['client_comuna'] = $validated['client_comuna'] ?? $request->input('client_comuna');
+        $validated['client_provincia'] = $validated['client_provincia'] ?? $request->input('client_provincia', $validated['client_comuna'] ?? 'Santiago');
+        $validated['work_details'] = $validated['work_details'] ?? $request->input('work_details');
 
         // Process items list
         $rawItems = $request->input('items', []);
@@ -347,11 +359,11 @@ class CertificateController extends Controller
             'document_type' => $validated['document_type'] ?? 'certificado',
             'date' => $validated['date'],
             'client_name' => $validated['client_name'],
-            'client_phone' => $validated['client_phone'],
-            'client_address' => $validated['client_address'],
+            'client_phone' => $validated['client_phone'] ?? null,
+            'client_address' => $validated['client_address'] ?? null,
             'client_region' => $validated['client_region'] ?? 'Región Metropolitana',
-            'client_comuna' => $validated['client_comuna'],
-            'client_provincia' => $validated['client_provincia'],
+            'client_comuna' => $validated['client_comuna'] ?? null,
+            'client_provincia' => $validated['client_provincia'] ?? ($validated['client_comuna'] ?? 'Santiago'),
             'description' => $mainDescription,
             'items' => $processedItems,
             'quantity' => $mainQuantity,

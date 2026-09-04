@@ -219,6 +219,7 @@ if (window.Alpine) {
                     </select>
                 </div>
             </div>
+            <input type="hidden" name="client_provincia" :value="selectedRegion === 'Región Metropolitana' ? 'Santiago' : selectedComuna">
 
             
         </div>
